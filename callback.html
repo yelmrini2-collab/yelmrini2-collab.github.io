@@ -1,0 +1,12 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Autorisation reçue — Noya Publisher</title><link rel="stylesheet" href="style.css"></head><body>
+<h1>Autorisation TikTok reçue</h1>
+<p id="msg">Copie l'adresse complète de cette page (barre d'adresse) et colle-la dans le formulaire de connexion n8n du bon compte.</p>
+<p><button id="copy" type="button">Copier l'adresse</button> <span id="ok"></span></p>
+<p>Compte : <strong id="state">—</strong></p>
+<script>
+const p=new URLSearchParams(location.search);
+document.getElementById('state').textContent=p.get('state')||'inconnu';
+if(p.get('error')){document.getElementById('msg').textContent='TikTok a renvoyé une erreur : '+p.get('error')+' — '+(p.get('error_description')||'');}
+document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText(location.href);document.getElementById('ok').textContent='Copié ✓';}catch(e){document.getElementById('ok').textContent='Copie impossible, sélectionne la barre d’adresse.';}};
+</script>
+</body></html>
